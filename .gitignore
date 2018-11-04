@@ -1,2 +1,7 @@
 node_modules
+plugins
+platforms
+.sourcemaps
+www
 
+package-lock.json

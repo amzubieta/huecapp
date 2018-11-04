@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Actualizar información de perfil</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label stacked>* Nombre</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.name.valid && (form.controls.name.dirty || form.controls.name.touched)" color="danger">
+      <div [hidden]="!form.controls.name.errors.required">
+        El campo es obligatorio
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>* Cédula de ciudadania</ion-label>
+      <ion-input type="text" formControlName="uniqueIdentificator"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!form.controls.uniqueIdentificator.valid && (form.controls.uniqueIdentificator.dirty || form.controls.uniqueIdentificator.touched)" color="danger">
+      <div [hidden]="!form.controls.uniqueIdentificator.errors.required">
+        La cédula es obligatoria
+      </div>
+    </ion-item>
+
+    <div padding>
+      <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Actualizar</button>
+    </div>
+  </form>
+</ion-content>

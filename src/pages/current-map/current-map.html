@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Huecos</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>Cercanos a mi</h3>
+  <div id="map_canvas"></div>
+
+  <ion-fab bottom right>
+    <button ion-fab color="primary" (click)="registerHole()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

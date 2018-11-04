@@ -3,28 +3,59 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Camera } from '@ionic-native/camera'
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { MyApp } from './app.component';
+
 import { HomePage } from '../pages/home/home';
+// import { UserInfoPage } from '../pages/user-info/user-info';
+
+import { UserProvider } from '../providers/user/user';
+import { HoleProvider } from '../providers/hole/hole';
+
+// YOUR_FIREBASE_CONFIG
+var config = {
+  apiKey: "apiKey",
+  authDomain: "authDomain",
+  databaseURL: "databaseURL",
+  projectId: "projectId",
+  storageBucket: "storageBucket",
+  messagingSenderId: "messagingSenderId"
+};
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage
+    // UserInfoPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(config),
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage
+    // UserInfoPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    Camera,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    UserProvider,
+    HoleProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }
