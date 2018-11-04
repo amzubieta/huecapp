@@ -1,6 +1,8 @@
 {
   "name": "huecapp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular",
   "pro_id": "bd022a60"
 }
