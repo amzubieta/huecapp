@@ -44,6 +44,7 @@
     "firebase": "^5.5.8",
     "geofirestore": "^2.2.2",
     "ionic-angular": "3.9.2",
+    "ionic-gallery-modal": "^0.2.7",
     "ionicons": "3.0.0",
     "promise-polyfill": "^8.1.0",
     "rxjs": "^6.3.3",
@@ -52,7 +53,7 @@
     "zone.js": "0.8.26"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.2.0",
+    "@ionic/app-scripts": "^3.2.1",
     "typescript": "~2.9.2"
   },
   "description": "An Ionic project",

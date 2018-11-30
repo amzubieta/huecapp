@@ -10,6 +10,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
+import * as ionicGalleryModal from 'ionic-gallery-modal';
+import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+
 import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home';
@@ -41,7 +44,8 @@ var config = {
     AngularFireModule.initializeApp(config),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ionicGalleryModal.GalleryModalModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -54,6 +58,10 @@ var config = {
     SplashScreen,
     Camera,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: ionicGalleryModal.GalleryModalHammerConfig,
+    },
     UserProvider,
     HoleProvider
   ]
