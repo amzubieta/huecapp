@@ -25,7 +25,21 @@ ionic cordova plugin add cordova-plugin-googlemaps --variable API_KEY_FOR_ANDROI
 
 ## Run environment
 
-### Web
+### Configuring App
+
+In order to configure your environment, please change the firebase credentials into `src/app/app.module.ts`
+
+Also, if you´re running your app inside the browser, please add the `GOOGLE_MAPS_KEY` inside the `src/page/current-map/current-map.ts`
+
+
+Also please configure your firebase aplication with a facebook application, in order to enable the SSO of the project.
+
+https://firebase.google.com/docs/auth/web/facebook-login?hl=es-419
+
+
+### Running locally
+
+#### Web
 
 If you dont need anything from ionic-native
 
@@ -42,7 +56,7 @@ ionic cordova run browser --lc
 for a better experience
 
 
-### Android
+#### Android
 
 ```
 ionic cordova run android --device
