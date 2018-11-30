@@ -3,11 +3,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {
   GoogleMaps,
   GoogleMap,
+  GoogleMapsEvent,
   Marker,
   GoogleMapsAnimation,
   Environment,
   MyLocation
 } from '@ionic-native/google-maps';
+
+import { ModalController } from 'ionic-angular/components/modal/modal-controller';
+import { GalleryModal } from 'ionic-gallery-modal';
 
 import { HoleProvider } from './../../providers/hole/hole';
 
@@ -21,9 +25,12 @@ export class CurrentMapPage {
   map: GoogleMap;
   currentLocation: any;
 
+  modalImages: any[] = [];
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public modalCtrl: ModalController,
     private holeProvider: HoleProvider
   ) { }
 
@@ -100,17 +107,43 @@ export class CurrentMapPage {
       self.addMarker({
         lat: document.coordinates.latitude,
         lng: document.coordinates.longitude
+      }, {
+        image: document.image,
+        user: document.user
       });
     });
   }
 
-  addMarker(position) {
+  addMarker(position, customData) {
+    let self = this
     this.map.addMarker({
       icon: 'red',
       position: position,
-      animation: 'DROP'
+      animation: 'DROP',
+      ...customData
     }).then((marker: Marker) => {
       marker.showInfoWindow();
+      marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(e => {
+        // self.map.panTo(e[0])
+        const marker = e[1]
+
+        const user = marker.get('user')
+        self.modalImages[0] = {
+          url: marker.get('image'),
+          title: `${user.name}, ${user.uniqueIdentificator}`
+        }
+        
+        self.openGallery()
+      });
     });
+  }
+
+  openGallery() {
+    let modal = this.modalCtrl.create(GalleryModal, {
+      photos: this.modalImages,
+      initialSlide: 0,
+      closeIcon: 'back'
+    });
+    modal.present();
   }
 }
